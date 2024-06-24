@@ -1,11 +1,13 @@
 /**
- * @brief ESP32 Rover Kit DTS Overlay File 
+ * @brief ESP32 Rover Kit DTS Overlay File
  */
 
- / {
+/ {
     aliases {
         adc0 = &adc0;
         pca9685 = &pca9685;
+        buzzer0 = &buzzer0;
+        led0 = &led0;
     };
 
     zephyr,user {
@@ -15,7 +17,28 @@
     chosen {
         zephyr,adc = &adc0;
     };
+
+    buzzers {
+        compatible = "pwm-leds";
+
+        buzzer0: buzzer_0 {
+            gpios = <&gpio0 2 GPIO_ACTIVE_HIGH>;
+            label = "buzzer";
+        };
+
+    };
+
+    leds {
+        compatible = "gpio-leds";
+                
+        led0: led_0 {
+            gpios = <&gpio0 2 GPIO_ACTIVE_LOW>;
+            label = "LED";
+        };
+    };
+
 };
+
 
 &adc0 {
     status = "okay";

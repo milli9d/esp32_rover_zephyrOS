@@ -10,6 +10,7 @@
 #include <zephyr/shell/shell.h>
 #include <zephyr/kernel.h>
 #include <zephyr/drivers/adc.h>
+#include <zephyr/drivers/gpio.h>
 
 LOG_MODULE_REGISTER(MAIN);
 
@@ -56,11 +57,22 @@ static void __adc_read(void)
     }
 }
 
+#if !DT_NODE_EXISTS(DT_NODELABEL(buzzer0))
+#error "Overlay for power output node not properly defined."
+#endif
+
 int main(void)
 {
     __banner();
 
+    static struct gpio_dt_spec buzzer = GPIO_DT_SPEC_GET(DT_ALIAS(buzzer0), gpios);
+
+    gpio_pin_configure_dt(&buzzer, GPIO_OUTPUT);
+
     while (1) {
+        gpio_pin_set_dt(&buzzer, 1u);
+        k_sleep(K_SECONDS(1u));
+        gpio_pin_set_dt(&buzzer, 0u);
         k_sleep(K_SECONDS(1u));
     }
 
