@@ -39,7 +39,6 @@
 		zephyr,bt-hci = &esp32_bt_hci;
 	};
 };
-
 &uart0 {
 	status = "okay";
 	current-speed = <115200>;
@@ -152,8 +151,8 @@
 
 		/* Reserve 256kB for the scratch partition */
 		scratch_partition: partition@210000 {
-			   label = "image-scratch";
-			   reg = <0x00210000 0x00040000>;
+			label = "image-scratch";
+			reg = <0x00210000 0x00040000>;
 		};
 
 		storage_partition: partition@250000 {

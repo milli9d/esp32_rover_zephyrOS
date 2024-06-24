@@ -4,6 +4,7 @@ cmake_minimum_required(VERSION 3.20.0)
 # import custom board package
 list(APPEND BOARD_ROOT ${CMAKE_CURRENT_SOURCE_DIR}/)
 # list(APPEND BOARD_ROOT ${CMAKE_CURRENT_SOURCE_DIR}/boards/freenove/espressif/esp_)
+set(DTC_OVERLAY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/esp32_rover_robocar.overlay)
 
 
 # import zephyr package; this is required for ZephyrOS cmake system to work

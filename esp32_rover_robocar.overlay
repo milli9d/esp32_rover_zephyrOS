@@ -1,0 +1,46 @@
+/**
+ * @brief ESP32 Rover Kit DTS Overlay File 
+ */
+
+ / {
+    aliases {
+        adc0 = &adc0;
+        pca9685 = &pca9685;
+    };
+
+    zephyr,user {
+        io-channels = <&adc0 4>;
+    };
+
+    chosen {
+        zephyr,adc = &adc0;
+    };
+};
+
+&adc0 {
+    status = "okay";
+    #address-cells = <1>;
+    #size-cells = <0>;
+
+    compatible = "espressif,esp32-adc";
+    unit = <0>;
+
+    channel@4 {
+        /* Battery Monitor ADC instance */
+        reg = <4>;
+        zephyr,gain = "ADC_GAIN_1_6";
+        zephyr,reference = "ADC_REF_INTERNAL";
+        zephyr,acquisition-time = <ADC_ACQ_TIME(ADC_ACQ_TIME_MICROSECONDS, 20)>;
+        zephyr,resolution = <12>;
+    };
+};
+
+&i2c0 {
+    pca9685: pca9685@0 {
+        /* PCA9685 PWM driver */
+        compatible = "nxp,pca9685-pwm";
+        #pwm-cells = <2>;
+        reg = <0x5F>;
+        status = "okay";
+    };
+};

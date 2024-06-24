@@ -1,6 +1,6 @@
-.. _hello_world:
+.. _robo_car:
 
-Hello World
+ESP32 Robo-Car Kit
 ###########
 
 Overview
