@@ -3,13 +3,6 @@
  */
 
 / {
-    aliases {
-        adc0 = &adc0;
-        pca9685 = &pca9685;
-        buzzer0 = &buzzer0;
-        led0 = &led0;
-    };
-
     zephyr,user {
         io-channels = <&adc0 4>;
     };
@@ -19,24 +12,30 @@
     };
 
     buzzers {
-        compatible = "pwm-leds";
+        compatible = "gpio-leds";
 
         buzzer0: buzzer_0 {
-            gpios = <&gpio0 2 GPIO_ACTIVE_HIGH>;
+            gpios = <&gpio0 9 GPIO_ACTIVE_HIGH>;
             label = "buzzer";
         };
-
     };
 
     leds {
         compatible = "gpio-leds";
-                
+
         led0: led_0 {
             gpios = <&gpio0 2 GPIO_ACTIVE_LOW>;
             label = "LED";
         };
     };
 
+    aliases
+    {
+        adc0 = &adc0;
+        pca9685 = &pca9685;
+        buzzer0 = &buzzer0;
+        led0 = &led0;
+    };
 };
 
 
@@ -59,11 +58,11 @@
 };
 
 &i2c0 {
-    pca9685: pca9685@0 {
+    pca9685: pca9685@5f {
         /* PCA9685 PWM driver */
         compatible = "nxp,pca9685-pwm";
         #pwm-cells = <2>;
-        reg = <0x5F>;
+        reg = <0x5f>;
         status = "okay";
     };
 };
