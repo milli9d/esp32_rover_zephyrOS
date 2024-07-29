@@ -1,6 +1,7 @@
 /**
  * @brief ESP32 Rover Kit DTS Overlay File
  */
+#include <zephyr/dt-bindings/led/led.h>
 
 / {
     zephyr,user {
@@ -29,10 +30,21 @@
         };
     };
 
+    // led_strip: ws2812 {
+    //     compatible = "worldsemi,ws2812-gpio";
+
+    //     chain-length = <12>; /* arbitrary */
+    //     color-mapping = <LED_COLOR_ID_GREEN
+    //     LED_COLOR_ID_RED
+    //     LED_COLOR_ID_BLUE>;
+    //     gpios = <&gpio0 32 0>;
+    // };
+
     aliases
     {
+        // led-strip = &led_strip;
         adc0 = &adc0;
-        pca9685 = &pca9685;
+        // pca9685 = &pca9685;
         buzzer0 = &buzzer0;
         led0 = &led0;
     };
@@ -58,11 +70,11 @@
 };
 
 &i2c0 {
-    pca9685: pca9685@5f {
-        /* PCA9685 PWM driver */
-        compatible = "nxp,pca9685-pwm";
-        #pwm-cells = <2>;
-        reg = <0x5f>;
-        status = "okay";
-    };
+    // pca9685: pca9685@5f {
+    //     /* PCA9685 PWM driver */
+    //     compatible = "nxp,pca9685-pwm";
+    //     #pwm-cells = <2>;
+    //     reg = <0x5f>;
+    //     status = "okay";
+    // };
 };

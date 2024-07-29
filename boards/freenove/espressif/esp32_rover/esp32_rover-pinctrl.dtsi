@@ -67,18 +67,8 @@
 
 	i2c0_default: i2c0_default {
 		group1 {
-			pinmux = <I2C1_SDA_GPIO13>,
-					 <I2C1_SCL_GPIO14>;
-			bias-pull-up;
-			drive-open-drain;
-			output-high;
-		};
-	};
-
-	i2c1_default: i2c1_default {
-		group1 {
-			pinmux = <I2C1_SDA_GPIO13>,
-					 <I2C1_SCL_GPIO14>;
+			pinmux = <I2C0_SDA_GPIO13>,
+					 <I2C0_SCL_GPIO14>;
 			bias-pull-up;
 			drive-open-drain;
 			output-high;
